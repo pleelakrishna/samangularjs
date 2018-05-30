@@ -5,96 +5,16 @@
   <title>User Management</title>
   <script
      src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-  <script type="text/javascript">
-  var app = angular.module('myapp', []);
-
-  app.controller('myappcontroller', function($scope, $http) {
-  $scope.users = []
-  $scope.userform = {
-  name : "",
-  department : "",
-  id : ""
-	 
-   };
-  
-  
+      <script src = "/angularjs/modules/mainApp.js"></script>
+       <script src = "/angularjs/modules/myappcontroller.js"></script>
  
-
-  getUserDetails();
-
-  function getUserDetails() {
-  $http({
-    method : 'GET',
-    url : 'userdetails'
-   }).then(function successCallback(response) {
-   $scope.users = response.data;
-   }, function errorCallback(response) {
-    console.log(response.statusText);
-   });
-  }
-
-  $scope.processUser = function() 
-  {
-    $http({
-    method : 'POST',
-    url : 'user',
-    data : angular.toJson($scope.userform),
-    headers : {
-    'Content-Type' : 'application/json'
-    }
-    }).then( getUserDetails(),clearForm())
-      .success(function(data){
-      });
-  }
-  $scope.editUser = function(user) 
-  {
-	  console.log(user);
-    $scope.userform.name = user.name;
-    $scope.userform.department = user.department;
-    $scope.userform.id = user.id;
-
-    disableName();
-  }
-  $scope.clearsForm = function() 
-  {
-	  $scope.userform.name = "";
-	  $scope.userform.department = "";
-   
-  }
-  $scope.deleteUser = function(user) {
-   $http({
-     method : 'DELETE',
-     url : 'deleteuser',
-     data : angular.toJson(user),
-     headers : {
-     'Content-Type' : 'application/json'
-   }
-   }).then( getUserDetails());
-  }
- 
-  function clearForm() {
-    $scope.userform.name = "";
-    $scope.userform.department = "";
-    $scope.userform.id = "";
-    document.getElementById("id").disabled = false;
-  };
-  function disableName()
-  {
-    document.getElementById("id").disabled = true;
-  };
-  $scope.checkUser = function(data)
-  {
-	 alert(data); 
-  }
- });
-</script>
 <link rel="stylesheet"
   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
-<body ng-app="myapp" ng-controller="myappcontroller">
+<body ng-app="mainApp" ng-controller="myappcontroller">
  <h3>User Registration Form</h3>
  
-   <form name="studentForm" >
+   <form name="usersform" novalidate>
     <div class="table-responsive">
       <table class="table table-bordered" style="width: 600px">
        
@@ -107,8 +27,9 @@
          
           <td>Name</td>
           <td><input type="text" id="name"  name = "name" ng-model="userform.name" size="30" required/></td>
-          <span style = "color:red" ng-show = "userform.name.$dirty && userform.name.$invalid">  
-         <span ng-show = "userform.name.$error.required">First Name is required.</span>  
+          <span style = "color:red" ng-show = "userform.name.$dirty && userform.name.$invalid"> </span>
+         <span  style ="color:red;"ng-show = "usersform.name.$error.required">First Name is required.</span>  
+        
         
         </tr>
         <tr>
@@ -121,7 +42,12 @@
             class="btn btn-primary btn-sm" ng-click="processUser()"
             value="Create / Update User" />
             
-              <button ng-click = "clearsForm()">Reset</button>  </td>
+              <button ng-click = "clearsForm()">Reset</button>  
+              
+                     <button ng-disabled = "userform.name.$dirty &&
+                        userform.name.$invalid || studentForm.department.$dirty &&
+                        studentForm.department.$invalid" ng-click="processUser()">Submit</button>
+                  </td>
        </tr>
      </table>
    </div>

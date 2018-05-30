@@ -14,5 +14,20 @@ public class LoginController {
 		return "UserManagement";
 	}
 	
+	
+	@GetMapping("/mode")
+	public String showModules(Model model)
+	{
+		
+		return "testAngularJS";
+	}
+	
+	@GetMapping("/mode2")
+	public String showModules2(Model model)
+	{
+		
+		return "pagination";
+	}
+	
 
 }
