@@ -29,5 +29,12 @@ public class LoginController {
 		return "pagination";
 	}
 	
+	@GetMapping("/pageform")
+	public String showAngularForm(Model model)
+	{
+		
+		return "pageform";
+	}
+	
 
 }

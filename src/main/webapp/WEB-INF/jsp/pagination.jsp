@@ -20,8 +20,34 @@ Angularjs UI-Grid Paging Example
 
 var app = angular.module("uigridApp", ["ui.grid", "ui.grid.pagination"]);
 
-app.controller("uigridCtrl", function ($scope) {
+app.controller("uigridCtrl", function ($scope,$http) {
+	
+	 $scope.users = []
+	 
+	 
+	 
+	 getUserDetails();
 
+	  function getUserDetails() {
+	  $http({
+	    method : 'GET',
+	    url : 'userdetails'
+	   }).then(function successCallback(response) {
+	   $scope.users = response.data;
+	   $scope.gridOptions.data = $scope.users;
+	   }, function errorCallback(response) {
+	    console.log(response.statusText);
+	   });
+	  }
+
+	  
+	  var edit ='<div class="ui-grid-cell-contents">{{ row.entity.id}}</div>';	  
+	  var edit2= '<div>' +
+                 '  <a href="{{row.entity.id}}">Click me</a>' +
+                 '</div>'
+	  
+	  
+	  
 $scope.gridOptions = {
 
 paginationPageSizes: [25, 50, 75],
@@ -30,13 +56,16 @@ paginationPageSize: 5,
 
 columnDefs: [
 
+{ field: 'id' ,cellTemplate: '<div class="ui-grid-cell-contents">{{ row.entity.id}}</div>'  },
+
 { field: 'name' },
 
-{ field: 'age' },
-
-{ field: 'location' }
+{ field: 'department' },
+{ field: 'Options' ,cellTemplate: edit2}
 
 ],
+
+
 
 onRegisterApi: function (gridApi) {
 
@@ -46,39 +75,8 @@ $scope.grid1Api = gridApi;
 
 };
 
-$scope.users = [
 
-{ name: "Madhav Sai", age: 10, location: 'Nagpur' },
 
-{ name: "Suresh Dasari", age: 30, location: 'Chennai' },
-
-{ name: "Rohini Alavala", age: 29, location: 'Chennai' },
-
-{ name: "Praveen Kumar", age: 25, location: 'Bangalore' },
-
-{ name: "Sateesh Chandra", age: 27, location: 'Vizag' },
-
-{ name: "Siva Prasad", age: 38, location: 'Nagpur' },
-
-{ name: "Sudheer Rayana", age: 25, location: 'Kakinada' },
-
-{ name: "Honey Yemineni", age: 7, location: 'Nagpur' },
-
-{ name: "Mahendra Dasari", age: 22, location: 'Vijayawada' },
-
-{ name: "Mahesh Dasari", age: 23, location: 'California' },
-
-{ name: "Nagaraju Dasari", age: 34, location: 'Atlanta' },
-
-{ name: "Gopi Krishna", age: 29, location: 'Repalle' },
-
-{ name: "Sudheer Uppala", age: 19, location: 'Guntur' },
-
-{ name: "Sushmita", age: 27, location: 'Vizag' }
-
-];
-
-$scope.gridOptions.data = $scope.users;
 
 });
 
