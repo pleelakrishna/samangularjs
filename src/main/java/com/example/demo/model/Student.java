@@ -12,20 +12,16 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	private String department;
+	private String departmentid;
+	private String sal;
+	private String mobile;
 	
 	
 	Student()
 	{
 		
 	}
-	public Student(String string, String string2) {
-		
-		
-		this.name=string;
-		this.department=string2;
-		// TODO Auto-generated constructor stub
-	}
+	
 	public int getId() {
 		return id;
 	}
@@ -38,17 +34,33 @@ public class Student {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDepartment() {
-		return department;
+	
+	
+	
+	
+	public String getDepartmentid() {
+		return departmentid;
 	}
-	public void setDepartment(String department) {
-		this.department = department;
+	public void setDepartmentid(String departmentid) {
+		this.departmentid = departmentid;
+	}
+	public String getSal() {
+		return sal;
+	}
+	public void setSal(String sal) {
+		this.sal = sal;
+	}
+	public String getMobile() {
+		return mobile;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", name=" + name + ", department=" + department + "]";
+		return "Student [id=" + id + ", name=" + name + ", departmentid=" + departmentid + ", sal=" + sal + ", mobile="
+				+ mobile + "]";
 	}
-	
 	
 	
 

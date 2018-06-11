@@ -26,6 +26,8 @@ mainApp.controller('pageformController', function($scope) {
 	
     $scope.users =[{'name':'krishna','status':0},{'name':'leela','status':1}]
     
+    $scope.numbers =[{'id':'1','name':'leela'},{'id':'2','name':'leela2'},{'id':'3','name':'leela3'}]
+    
     $scope.addUser = function(){
     	
     	 if($scope.status =="")
@@ -75,6 +77,9 @@ mainApp.controller('pageformController', function($scope) {
       }
    	
    }
+
+	console.log(123);
+    
     
     
     $scope.master = {Name:"krishna", lastName:""};
@@ -83,3 +88,36 @@ mainApp.controller('pageformController', function($scope) {
     };
     $scope.reset();
 });
+
+
+mainApp.directive('allowOnlyNumbers', function () {
+    return {  
+        restrict: 'A',  
+        link: function (scope, elm, attrs, ctrl) {
+            elm.on('keydown', function (event) {  
+                var $input = $(this);  
+                var value = $input.val();  
+                value = value.replace(/[^0-9]/g, '')  
+                $input.val(value);  
+                if (event.which == 64 || event.which == 16) {  
+                    // to allow numbers  
+                    return false;  
+                } else if (event.which >= 48 && event.which <= 57) {  
+                    // to allow numbers  
+                    return true;  
+                } else if (event.which >= 96 && event.which <= 105) {  
+                    // to allow numpad number  
+                    return true;  
+                } else if ([8, 13, 27, 37, 38, 39, 40].indexOf(event.which) > -1) {  
+                    // to allow backspace, enter, escape, arrows  
+                    return true;  
+                } else {  
+                    event.preventDefault();  
+                    // to stop others  
+                    //alert("Sorry Only Numbers Allowed");  
+                    return false;  
+                }  
+            });  
+        }  
+    }  
+});  

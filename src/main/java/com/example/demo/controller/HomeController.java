@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,15 +13,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dao.DepartmentDao;
 import com.example.demo.dao.StudentDao;
+import com.example.demo.model.Department;
 import com.example.demo.model.Student;
 
 @RestController
 public class HomeController {
 	
 	
+	
+	
 	@Autowired
 	StudentDao studentDao;
+	@Autowired DepartmentDao departmentDao;
 	
 	public List<Student> userDetailsList = new ArrayList<Student>();
 	
@@ -85,10 +90,24 @@ public class HomeController {
 	    
 	
 	
-	 public void UserController()
+	
+	 
+	 
+	 @RequestMapping(value="/deptList",method=RequestMethod.GET,produces="application/json")
+	    public List<Department> getDepartmentsLsit()
 	    {
-	        userDetailsList.add(new Student("User1", "Mechanical"));
-	        userDetailsList.add(new Student("User2", "Electrical"));
+		 System.out.println("departmentsList");
+			  return departmentDao.departmentsList();
+	    }
+	 
+	 @RequestMapping(value="/savestudent",consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+	    public ResponseEntity saveStudent(@RequestBody Student userDetails)
+	    {
+		 
+			 studentDao.saveStudent(userDetails);
+			  return new ResponseEntity(HttpStatus.OK);
+		 
+		
 	    }
 	
 	

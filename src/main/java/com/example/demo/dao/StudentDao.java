@@ -43,7 +43,7 @@ public class StudentDao {
 	}
 	public int editStudent(Student student)
 	{
-		String hql ="update student set name='"+student.getName()+"' ,department= '"+student.getDepartment()+"' where id="+student.getId()+" ";  
+		String hql ="update student set name='"+student.getName()+"' ,department= '"+student.getDepartmentid()+"' where id="+student.getId()+" ";  
 		
 		RowMapper<Student> rowMapper = new BeanPropertyRowMapper<Student>(Student.class);
 		
@@ -56,7 +56,7 @@ public class StudentDao {
 
 	public void saveStudent(Student userDetails) {
 		// TODO Auto-generated method stub
-		String hql ="INSERT INTO student (department,name) VALUES ( '"+userDetails.getDepartment()+" ' ,'"+userDetails.getName()+" ') ";
+		String hql ="INSERT INTO student (departmentid,name,mobile,sal) VALUES ( '"+userDetails.getDepartmentid()+" ' ,'"+userDetails.getName()+" ','"+userDetails.getMobile()+" ','"+userDetails.getSal()+" ') ";
 		
 		jdbcTemplate.update(hql);
 	}

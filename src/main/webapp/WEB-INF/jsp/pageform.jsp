@@ -28,12 +28,12 @@
    <div class="container">
   <h2>Horizontal form</h2>
   <form class="form-horizontal">
-  <div class="form-group">
+ <!--  <div class="form-group">
       <label class="control-label col-sm-2" for="name">Name:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" ng-model="name">
+        <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" ng-model="name" only-digits>
       </div>
-    </div>
+    </div> -->
    <!--  <div class="form-group">
       <label class="control-label col-sm-2" for="email">Email:</label>
       <div class="col-sm-10">
@@ -56,7 +56,7 @@
       <label class="control-label col-sm-2" for="gender">Gender:</label>
       <div class="col-sm-10">
       <label class="radio-inline" for="male">male:</label>
-        <input type="radio"  id="male"  name="gender" ng-model="gender" ng-value="'male'">
+        <input type="radio"  id="male"  name="gender" ng-model="gender" ng-value="'male'" >
         <label class="radio-inline" for="female">Female:</label>
          <input type="radio"  id="female"  name="gender" ng-model="gender" ng-value="'female'">
       </div>
@@ -67,6 +67,13 @@
         <select class="form-control" ng-model="age" name="type" ng-dropdown ng-change="myFunc(age)">
           <option ng-option value="">Select</option>
           <option ng-option value="{{i}}" ng-repeat="i in ranges">{{i}}</option>
+            </select>
+        
+      </div>
+      <div class="col-sm-10">
+        <select class="form-control" ng-model="age" name="type" ng-dropdown ng-change="myFunc(age)">
+          <option ng-option value="">Select</option>
+          <option ng-option value="{{k.id}}" ng-repeat="(k,v) in numbers ">{{v.name}}</option>
             </select>
         
       </div>
@@ -137,7 +144,8 @@
     </tr> 
     <tr>
     <td>
-    <input type="text" id="name" name="name" ng-model="name">
+    <form>
+    <input type="text" id="name" name="name" ng-model="name" allow-only-numbers /></form>
      Active <input type="radio" id="status" name="status" value="1" ng-model="status">
      Inactive <input type="radio" id="status" name="status" value="0" ng-model="status">
     <input type="button" value="add" ng-show = "!IsVisible"    ng-click="addUser()">  

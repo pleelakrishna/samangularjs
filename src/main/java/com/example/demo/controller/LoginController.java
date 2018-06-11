@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LoginController {
 	
-	@GetMapping("/")
+	@GetMapping("/test5")
 	public String user(Model model)
 	{
 		
@@ -34,6 +34,13 @@ public class LoginController {
 	{
 		
 		return "pageform";
+	}
+	
+	@GetMapping("/")
+	public String showBRealForm(Model model)
+	{
+		
+		return "bRealForm";
 	}
 	
 

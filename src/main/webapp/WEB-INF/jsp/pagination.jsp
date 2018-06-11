@@ -24,8 +24,6 @@ app.controller("uigridCtrl", function ($scope,$http) {
 	
 	 $scope.users = []
 	 
-	 
-	 
 	 getUserDetails();
 
 	  function getUserDetails() {
@@ -44,7 +42,9 @@ app.controller("uigridCtrl", function ($scope,$http) {
 	  var edit ='<div class="ui-grid-cell-contents">{{ row.entity.id}}</div>';	  
 	  var edit2= '<div>' +
                  '  <a href="{{row.entity.id}}">Click me</a>' +
-                 '</div>'
+                 '</div>';
+                 
+      var edit3 ='<input type="button" value="Click me" ng-click="grid.appScope.msg(row.entity)">';	           
 	  
 	  
 	  
@@ -61,7 +61,7 @@ columnDefs: [
 { field: 'name' },
 
 { field: 'department' },
-{ field: 'Options' ,cellTemplate: edit2}
+{ field: 'Options' ,cellTemplate: edit3}
 
 ],
 
@@ -73,9 +73,13 @@ $scope.grid1Api = gridApi;
 
 }
 
+
 };
 
-
+$scope.msg =function(msg)
+{
+	alert(msg.name);
+	}
 
 
 });

@@ -1,1 +1,1 @@
-var mainApp = angular.module("mainApp", []);
+var mainApp = angular.module("mainApp", ["ui.grid", "ui.grid.pagination"]);
