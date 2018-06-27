@@ -1,4 +1,4 @@
-mainApp.controller('brealController', function($scope, $http) {
+mainApp2.controller('datatablesajs',  function($scope, $http,NgTableParams) {
 	 $scope.departments = []
 	 
 	 $scope.users = [];
@@ -50,12 +50,12 @@ mainApp.controller('brealController', function($scope, $http) {
 	    url : 'deptList'
 	   }).then(function successCallback(response) {
 		   
-		   console.log(response);
-		   console.log(response.data);
+		  // console.log(response);
+		  // console.log(response.data);
 		   
 	   $scope.departments = response.data;
-	   console.log("hello");
-	   console.log($scope.departments);
+	   //console.log("hello");
+	   //console.log($scope.departments);
 	   }, function errorCallback(response) {
 	    console.log(response.statusText);
 	   });
@@ -71,8 +71,10 @@ mainApp.controller('brealController', function($scope, $http) {
 	    url : 'userdetails'
 	   }).then(function successCallback(response) {
 	   $scope.users = response.data;
+	   //console.log("here user data");
 	   console.log($scope.users);
-	   $scope.gridOptions.data = $scope.users;
+	   //$scope.gridOptions.data = $scope.users;
+	   $scope.tableParams = new NgTableParams({}, { dataset: $scope.users});
 	   }, function errorCallback(response) {
 	    console.log(response.statusText);
 	   });
@@ -135,6 +137,11 @@ mainApp.controller('brealController', function($scope, $http) {
 
 
 			  };
+	  
+	  
+	  
+	/*  var data = [{name: "Moroni", age: 50} ,];
+	  $scope.tableParams = new NgTableParams({}, { dataset: data});*/
 	
 
 });

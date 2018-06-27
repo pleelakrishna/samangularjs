@@ -43,5 +43,12 @@ public class LoginController {
 		return "bRealForm";
 	}
 	
+	@GetMapping("/table")
+	public String showDataTables(Model model)
+	{
+		
+		return "datatablesajs";
+	}
+	
 
 }

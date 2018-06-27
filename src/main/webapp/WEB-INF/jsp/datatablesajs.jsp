@@ -10,11 +10,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-  <script src = "/angularjs/modules/mainApp.js"></script>
-  <script src = "/angularjs/modules/bRealFormController.js"></script>
+  <script src = "/angularjs/modules/mainApp2.js"></script>
+  <script src = "/angularjs/modules/datatablesajs.js"></script>
    <script src = "/angularjs/modules/customValidationangular.js"></script>
    <script src="http://ui-grid.info/release/ui-grid.js"></script>
    <link rel="stylesheet" href="http://ui-grid.info/release/ui-grid.css" type="text/css">
+   <!-- for data tables css files starting -->
+   <link rel="stylesheet"; href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">
+<script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>
+
+<!-- Add references to ngTable's javascript and css files. EG: -->
 </head>
 <style type="text/css">
 
@@ -29,7 +34,7 @@ p {
 }
 
 </style>
-<body  ng-app = "mainApp"  ng-controller = "brealController">
+<body  ng-app = "mainApp2"  ng-controller = "datatablesajs">
 
 <div class="container">
   <h2>Horizontal form</h2>
@@ -86,6 +91,26 @@ p {
 {{studentform.departmentid}}
 {{studentform.name}}
 
+
+
+
+
+<table ng-table="tableParams" class="table" show-filter="true">
+    <tr ng-repeat="user in $data">
+        <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+            {{user.name}}</td>
+        <td title="'Mobile'" filter="{ mobile: 'number'}" sortable="'mobile'">
+            {{user.mobile}}</td>
+             <td title="'Sal'" filter="{ sal: 'number'}" sortable="'sal'">
+            {{user.sal}}</td>
+            <td title="'Department'" filter="{ departmentid: 'number'}" sortable="'departmentid'">
+            {{user.departmentid}}</td>
+            <td title="'Action'"><a href="#">Edit</a></td>
+    </tr>
+</table>
+
+
 <div ui-grid="gridOptions" ui-grid-pagination class="myGrid"></div>
+
 </body>
 </html>

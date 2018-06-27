@@ -1,4 +1,4 @@
-mainApp.directive('mobile', function () {
+mainApp2.directive('mobile', function () {
     return {  
         restrict: 'A',  
         link: function (scope, elm, attrs, ctrl) {
@@ -31,7 +31,7 @@ mainApp.directive('mobile', function () {
 });  
 
 
-mainApp.directive('numeric', function () {  
+mainApp2.directive('numeric', function () {  
     return {  
         restrict: 'A',  
         link: function (scope, elm, attrs, ctrl) {  
