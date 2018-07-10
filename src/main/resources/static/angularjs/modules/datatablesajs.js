@@ -107,37 +107,7 @@ mainApp2.controller('datatablesajs',  function($scope, $http,NgTableParams) {
      // var deleterow1 = "<a class='activate' onclick='deleteBranch("+ orderObj.id+ ",1)'><i class='fa fa-eye-slash'></i></a>"
       var deleterow = "<a class='activate'  ng-click='grid.appScope.msg(row.entity)'>delete</a>";
 	  
-	  
-	  $scope.gridOptions = {
-
-			  paginationPageSizes: [25, 50, 75],
-
-			  paginationPageSize: 5,
-
-			  columnDefs: [
-
-			  { field: 'id' ,cellTemplate: '<div class="ui-grid-cell-contents">{{ row.entity.id}}</div>'  },
-
-			  { field: 'name' },
-
-			  { field: 'departmentid' },
-			  { field: 'mobile' },
-			  { field: 'sal' },
-			  { field: 'Options' ,cellTemplate: deleterow}
-
-			  ],
-
-
-
-			  onRegisterApi: function (gridApi) {
-
-			  $scope.grid1Api = gridApi;
-
-			  }
-
-
-			  };
-	  
+	
 	  
 	  
 	/*  var data = [{name: "Moroni", age: 50} ,];

@@ -110,7 +110,5 @@ p {
 </table>
 
 
-<div ui-grid="gridOptions" ui-grid-pagination class="myGrid"></div>
-
 </body>
 </html>
